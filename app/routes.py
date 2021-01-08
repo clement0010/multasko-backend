@@ -3,6 +3,7 @@ from app.models import Memo, Category
 from sqlalchemy import desc, func
 from random import randrange
 import datetime
+import dateutil.parser
 
 @app.route('/', methods=['GET'])
 @cross_origin()
@@ -16,7 +17,7 @@ def populate():
 
     objects = []
     for i in data:
-        objects.append(Memo(text=i['text'], priority_level=randrange(3), date_posted=datetime.datetime.fromisoformat(i['date_posted']), text_type=i['text_type']))
+        objects.append(Memo(text=i['text'], priority_level=randrange(3), date_posted=dateutil.parser.isoparse(i['date_posted']), text_type=i['text_type']))
 
     db.session.add_all(objects)
     db.session.commit()
