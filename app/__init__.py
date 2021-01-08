@@ -7,8 +7,6 @@ import json
 import os
 import sys
 
-print("test")
-
 app = Flask(__name__)
 cors = CORS(app)
 

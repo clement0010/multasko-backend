@@ -32,7 +32,17 @@ git clone git@github.com:gerhean/multasko-backend.git
     
    You should see a `(venv)` in front of the prompt on your console/terminal/command prompt.
    This shows your virtual environment is active.
-
+5. Set up database
+   ```bash
+   flask db init
+   flask db migrate
+   flask db upgrade
+   ```
+6. Start flask server
+   ```bash
+    flask run
+   ```
+ 
    
 ## Make commands
 
