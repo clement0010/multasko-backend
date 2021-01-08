@@ -10,11 +10,6 @@ git clone https://github.com/clement0010/multasko-backend
 - [Docker](https://docs.docker.com/get-docker/) or [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
     to host the various servers required in a hassle free manner.
 
-## Setup your environment
-
-Ensure you have python 3 installed. 
-
-
 ## Using Venv
 1. Ensure you have `virtualenv` installed.
     - Follow this [guide](https://www.c-sharpcorner.com/article/steps-to-set-up-a-virtual-environment-for-python-development/) if necessary and you're on a Windows machine.
