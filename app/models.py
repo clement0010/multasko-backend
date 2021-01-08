@@ -28,7 +28,6 @@ class Memo(db.Model):
            'text_type': self.text_type,
            'category_id': self.category_id,
            'date_posted': dump_datetime(self.date_posted),
-
        }
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
