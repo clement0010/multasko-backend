@@ -51,7 +51,7 @@ def memo_api():
             status = Memo.query.filter_by(id=id).update(data)
 
             db.session.commit()
-            return jsonify(status)
+            return jsonify(rows_affected=status)
         else:
             raise InvalidUsage('Please specify your parameters', status_code=500)
 
@@ -61,7 +61,7 @@ def memo_api():
             status = Memo.query.filter_by(id=id).delete()
 
             db.session.commit()
-            return jsonify(status)
+            return jsonify(rows_affected=status)
         else:
             raise InvalidUsage('Please specify your parameters', status_code=500)
 
@@ -100,7 +100,7 @@ def category_api():
             status = Category.query.filter_by(id=id).delete()
 
             db.session.commit()
-            return jsonify(status)
+            return jsonify(rows_affected=status)
         else:
             raise InvalidUsage('Please specify your parameters', status_code=500)
 
@@ -112,7 +112,7 @@ def category_api():
             status = Category.query.filter_by(id=id).update(data)
 
             db.session.commit()
-            return jsonify(status)
+            return jsonify(rows_affected=status)
         else:
             raise InvalidUsage('Please specify your parameters', status_code=500)
 
