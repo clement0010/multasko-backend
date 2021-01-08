@@ -1,11 +1,28 @@
 from app import app, cross_origin, json, jsonify, os, request, db
 from app.models import Memo, Category
 from sqlalchemy import desc, func
+from random import randrange
+import datetime
 
 @app.route('/', methods=['GET'])
 @cross_origin()
 def index():
     return 'Index route works!'
+
+@app.route('/populate', methods=['POST'])
+@cross_origin()
+def populate():
+    data = request.get_json()
+
+    objects = []
+    for i in data:
+        objects.append(Memo(text=i['text'], priority_level=randrange(3), date_posted=datetime.datetime.fromisoformat(i['date_posted']), text_type=i['text_type']))
+
+    db.session.add_all(objects)
+    db.session.commit()
+
+    return jsonify([r.serialize for r in objects])
+
 
 @app.route('/api/memo', methods=['GET','POST','DELETE', 'PUT'])
 @cross_origin()
