@@ -13,7 +13,7 @@ class Memo(db.Model):
     priority_level = db.Column(db.Integer, default=0)
     text_type = db.Column(db.Integer, default=0)
     summary = db.Column(db.String, nullable=True)
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
+    category_id = db.Column(db.String, db.ForeignKey('category.id'), nullable=True)
 
 
     def __repr__(self):

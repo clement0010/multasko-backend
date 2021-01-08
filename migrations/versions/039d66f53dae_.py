@@ -1,8 +1,8 @@
-"""memos table
+"""empty message
 
-Revision ID: e7ea40b70e27
+Revision ID: 039d66f53dae
 Revises: 
-Create Date: 2021-01-08 13:25:27.033488
+Create Date: 2021-01-08 18:28:50.652675
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e7ea40b70e27'
+revision = '039d66f53dae'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,8 @@ def upgrade():
     op.create_table('category',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('memo',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -30,7 +31,7 @@ def upgrade():
     sa.Column('priority_level', sa.Integer(), nullable=True),
     sa.Column('text_type', sa.Integer(), nullable=True),
     sa.Column('summary', sa.String(), nullable=True),
-    sa.Column('category_id', sa.Integer(), nullable=True),
+    sa.Column('category_id', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['category_id'], ['category.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

@@ -1,13 +1,13 @@
 from app import app, cross_origin, json, jsonify, os, request, db
 from app.models import Memo, Category
-from sqlalchemy import desc
+from sqlalchemy import desc, func
 
 @app.route('/', methods=['GET'])
 @cross_origin()
 def index():
     return 'Index route works!'
 
-@app.route('/api/memo', methods=['GET','POST','DELETE'])
+@app.route('/api/memo', methods=['GET','POST','DELETE', 'PUT'])
 @cross_origin()
 def memo_api():
     method = request.method
@@ -37,11 +37,23 @@ def memo_api():
     elif method == 'POST':
         data = request.get_json()
 
-        memo = Memo(text=data['text'])
+        memo = Memo(text=data['text'], priority_level=data['priority_level'])
         db.session.add(memo)
         db.session.commit()
         
         return jsonify(memo.serialize)
+
+    elif method == 'PUT':
+        if request.args:
+            id = request.args.get('id')
+            data = request.get_json()
+
+            status = Memo.query.filter_by(id=id).update(data)
+
+            db.session.commit()
+            return jsonify(status)
+        else:
+            raise InvalidUsage('Please specify your parameters', status_code=500)
 
     elif method == 'DELETE':
         if request.args:
@@ -62,7 +74,7 @@ def memo_api():
     # # ML Controller insert here
     # return jsonify(data)
 
-@app.route('/api/category', methods=['GET','POST', 'DELETE'])
+@app.route('/api/category', methods=['GET','POST', 'DELETE', 'PUT'])
 @cross_origin()
 def category_api():
     method = request.method
@@ -84,8 +96,20 @@ def category_api():
 
     elif method == 'DELETE':
         if request.args:
-            name = request.args.get('name')
-            status = Category.query.filter_by(name=name).delete()
+            name = request.args.get('id')
+            status = Category.query.filter_by(id=id).delete()
+
+            db.session.commit()
+            return jsonify(status)
+        else:
+            raise InvalidUsage('Please specify your parameters', status_code=500)
+
+    elif method == 'PUT':
+        if request.args:
+            id = request.args.get('id')
+            data = request.get_json()
+
+            status = Category.query.filter_by(id=id).update(data)
 
             db.session.commit()
             return jsonify(status)
