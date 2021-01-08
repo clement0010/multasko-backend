@@ -12,7 +12,7 @@ class Memo(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.datetime.now)
     priority_level = db.Column(db.Integer, default=0)
     text_type = db.Column(db.Integer, default=0)
-    category_id = db.Column(db.String, db.ForeignKey('category.id'), nullable=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
 
 
     def __repr__(self):
