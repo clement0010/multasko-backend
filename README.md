@@ -46,8 +46,8 @@ These commands are to be executed in the base directory of this repo.
 Execute them by typing a `make` in front of them. For example:
 
 ```bash
-   make venv 
-   ```
+make venv 
+```
 
 - Venv Helpers
     - venv             
@@ -58,7 +58,7 @@ Execute them by typing a `make` in front of them. For example:
 - Server  
     - runserver
         - Runs the server at http://localhost:5000
-```
+
 
 ## Not Using Venv
 
