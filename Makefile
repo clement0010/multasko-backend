@@ -22,7 +22,7 @@ else
 	MAKE_VENV_IF_NOT_EXIST := test -d $(VENV_NAME) || virtualenv -p python3 $(VENV_NAME)
 endif
 
-export PYTHONPATH += $(ROOT_DIR);$(ROOT_DIR)/data_processing/
+export PYTHONPATH += $(ROOT_DIR);
 
 .DEFAULT: help
 
@@ -33,6 +33,10 @@ help:
 	@echo.
 	@echo xxxxxxxxxxxxxxxxxx  Server  xxxxxxxxxxxxxxxxxx
 	@echo runserver:          Runs the server
+	@echo.
+	@echo xxxxxxxxxxxxxxxxxx  Containerise the app in Docker  xxxxxxxxxxxxxxxxxx
+	@echo docker-setup:       Build the image
+	@echo docker-start:       Run container
 .PHONY: help
 
 # Requirements are in requirements.txt, so whenever requirements.txt is changed, re-run installation of dependencies.
@@ -45,3 +49,14 @@ $(VENV_ACTIVATE): $(PIP_REQUIREMENTS)
 clean-venv:
 	$(REMOVE_DIR) $(VENV_NAME)
 .PHONY: clean-venv
+
+runserver:
+	$(PYTHON) main.py
+
+docker-setup:
+	-docker build -t multasko-backend:latest .
+.PHONY: docker-setup
+
+docker-start:
+	-docker run -dp 5000:5000 multasko-backend
+.PHONY: docker-start
