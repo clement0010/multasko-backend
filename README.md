@@ -2,7 +2,7 @@
   
 ## Getting this respository
 ```bash
-git clone https://github.com/clement0010/multasko-backend
+git clone git@github.com:gerhean/multasko-backend.git
 ```
 
 ## Requirements
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 ### 2. Start the flask server
 You can start the flask server using the command below
 ```bash
-python main.py
+python manage.py
 ```
 And now you can visit the site with the URL http://localhost:5000
 

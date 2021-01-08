@@ -1,0 +1,3 @@
+FLASK_APP=manage.py
+FLASK_DEBUG=1
+CORS_HEADERS=Content-Type
