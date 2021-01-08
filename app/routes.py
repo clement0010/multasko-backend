@@ -1,5 +1,6 @@
 from app import app, cross_origin, json, jsonify, os, request, db
 from app.models import Memo, Category
+from sqlalchemy import desc
 
 @app.route('/', methods=['GET'])
 @cross_origin()
@@ -12,7 +13,7 @@ def api():
     method = request.method
 
     if method == 'GET':
-        memos = Memo.query.all()
+        memos = Memo.query.order_by(desc(Memo.date_posted)).all()
 
         response = jsonify(json_list=[memo.serialize for memo in memos])
         return response
