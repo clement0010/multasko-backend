@@ -75,15 +75,15 @@ python main.py
 ```
 And now you can visit the site with the URL http://localhost:5000
 
-## Containerise the app
+### Containerise the app
 
-### 1. Build the image
+#### 1. Build the image
 You can build the image using the command below
 ```bash
 docker build -t multasko-backend:latest .
 ```
 
-### 2. Run container
+#### 2. Run container
 You can Run container in background using the command below
 ```bash
 docker run -dp 5000:5000 multasko-backend
