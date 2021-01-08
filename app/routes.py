@@ -37,7 +37,7 @@ def memo_api():
     elif method == 'POST':
         data = request.get_json()
 
-        memo = Memo(text=data['text'], priority_level=data['priority_level'], category_id=data['category_id'])
+        memo = Memo(text=data['text'], priority_level=data['priority_level'])
         db.session.add(memo)
         db.session.commit()
         

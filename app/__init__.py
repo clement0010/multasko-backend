@@ -7,6 +7,8 @@ import json
 import os
 import sys
 
+print("test")
+
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -14,6 +16,5 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
-
 
 from app import routes, models
