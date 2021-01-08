@@ -37,7 +37,7 @@ def memo_api():
     elif method == 'POST':
         data = request.get_json()
 
-        memo = Memo(text=data['text'], priority_level=data['priority_level'])
+        memo = Memo(text=data['text'], priority_level=data['priority_level'], category_id=data['category_id'])
         db.session.add(memo)
         db.session.commit()
         
@@ -88,11 +88,14 @@ def category_api():
     elif method == 'POST':
         data = request.get_json()
 
-        category = Category(name=data['name'])
-        db.session.add(category)
+        objects = []
+        for i in data:
+            objects.append(Category(name=i['name']))
+
+        db.session.add_all(objects)
         db.session.commit()
-        
-        return jsonify(category.serialize)
+
+        return jsonify([r.serialize for r in objects])
 
     elif method == 'DELETE':
         if request.args:

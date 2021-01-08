@@ -12,7 +12,6 @@ class Memo(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.datetime.now)
     priority_level = db.Column(db.Integer, default=0)
     text_type = db.Column(db.Integer, default=0)
-    summary = db.Column(db.String, nullable=True)
     category_id = db.Column(db.String, db.ForeignKey('category.id'), nullable=True)
 
 
@@ -27,13 +26,13 @@ class Memo(db.Model):
            'text' : self.text,
            'priority_level' : self.priority_level,
            'text_type': self.text_type,
-           'summary': self.summary,
            'category_id': self.category_id,
            'date_posted': dump_datetime(self.date_posted),
 
        }
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    summary = db.Column(db.String, nullable=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
     memos = db.relationship('Memo',backref='category',lazy=True)
 
@@ -44,7 +43,8 @@ class Category(db.Model):
     def serialize(self):
        """Return object data in easily serializable format"""
        return {
-           'id' : self.id,
-           'name' : self.name,
-            'memos' :[memo.serialize for memo in self.memos]
+        'id' : self.id,
+        'name' : self.name,
+        'summary': self.summary,
+        'memos' :[memo.serialize for memo in self.memos]
        }
