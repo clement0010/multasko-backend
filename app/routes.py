@@ -96,7 +96,7 @@ def category_api():
 
     elif method == 'DELETE':
         if request.args:
-            name = request.args.get('id')
+            id = request.args.get('id')
             status = Category.query.filter_by(id=id).delete()
 
             db.session.commit()
