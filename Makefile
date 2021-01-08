@@ -32,11 +32,11 @@ help:
 	@echo clean-venv:         Delete the venv folder
 	@echo.
 	@echo xxxxxxxxxxxxxxxxxx  Server  xxxxxxxxxxxxxxxxxx
-	@echo runserver:          Runs the server
+	@echo runserver:          Runs the server at http://localhost:5000
 	@echo.
 	@echo xxxxxxxxxxxxxxxxxx  Containerise the app in Docker  xxxxxxxxxxxxxxxxxx
 	@echo docker-setup:       Build the image
-	@echo docker-start:       Run container
+	@echo docker-start:       Run container at http://localhost:5000
 .PHONY: help
 
 # Requirements are in requirements.txt, so whenever requirements.txt is changed, re-run installation of dependencies.
