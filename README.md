@@ -16,7 +16,7 @@ Ensure you have python 3 installed.
 
 
 ## Using Venv
-1. Ensure you have `virtualenv` installed. (Optional?)
+1. Ensure you have `virtualenv` installed.
     - Follow this [guide](https://www.c-sharpcorner.com/article/steps-to-set-up-a-virtual-environment-for-python-development/) if necessary and you're on a Windows machine.
     - If you're on a mac e.g. [OS X](https://sourabhbajaj.com/mac-setup/Python/virtualenv.html).
 2. Ensure you have GNU make installed (Windows only) (Optional).
